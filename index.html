@@ -1,29 +1,35 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alarm Clock</title>
     <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div class="clock">
-      <div class="clock__time">
-        <span id="hours"></span>
-        <span id="minutes"></span>
-        <span id="seconds"></span>
-        <span id="am-pm"></span>
-      </div>
-      <div class="clock__date">
-        <span id="day"></span>
-        <span id="month"></span>
-        <span id="year"></span>
-      </div>
-      <button id="set-alarm" class="button">Set Alarm</button>
-      <div id="alarm-form" class="hidden">
-        <label for="alarm-time">Alarm Time:</label>
-        <input type="time" id="alarm-time" name="alarm-time">
-        <button id="save-alarm" class="button">Save Alarm</button>
-      </div>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Alarm Clock</h1>
+        </div>
+        <div id="current-time"></div>
+        <h1>Set Alarm (24-Hour Clock)</h1>
+        <form class="user-input">
+            <input type="number" id="hour" max="23" min="00" placeholder="HH" />
+            <input type="number" id="min" max="59" min="00" placeholder="MM" />
+            <input type="number" id="sec" max="59" min="00" placeholder="SS" />
+            <br>
+            <br>
+            <button type="submit">Set</button>
+            <button type="reset" onclick="clearAlarm()">Stop</button>
+        </form>
+        <hr />
+
+        <h2>Upcoming Alarms</h2>
+        <ul class="set-alarms-list">
+            <li></li>
+        </ul>
     </div>
-    <script src="script.js"></script>
-  </body>
+</body>
+<script src="index.js"></script>
 </html>

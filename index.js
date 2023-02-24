@@ -95,6 +95,7 @@ function ringing(time){
     audio.play();
     audio.play();
     alert(`Hey! it is ${time}`);
+    showPopup()
 }
 
 // Function for stop the alarm
@@ -118,3 +119,44 @@ const remove = (value) => {
     alarm_List.length = 0;
     alarm_List.push.apply(alarm_List, newList);
 };
+
+let num1, num2, num3;
+
+function showPopup() {
+    // generate random math questions
+    num1 = Math.floor(Math.random() * 10) + 1;
+    num2 = Math.floor(Math.random() * 10) + 1;
+    num3 = Math.floor(Math.random() * 10) + 1;
+
+    // display the popup
+    const popup = document.getElementById('popup');
+    popup.style.display = 'block';
+
+    // set the math questions
+    document.getElementById('question1').innerHTML = num1 + " + " + num2 + " = ";
+    document.getElementById('question2').innerHTML = num2 + " - " + num3 + " = ";
+    document.getElementById('question3').innerHTML = num3 + " x " + num1 + " = ";
+}
+
+function closePopup() {
+    const popup = document.getElementById('popup');
+    popup.style.display = 'none';
+}
+
+function checkAnswers() {
+    // get the user's answers
+    const answer1 = parseInt(document.getElementById('answer1').value);
+    const answer2 = parseInt(document.getElementById('answer2').value);
+    const answer3 = parseInt(document.getElementById('answer3').value);
+
+    // check the answers
+    if (answer1 === num1 + num2 && answer2 === num2 - num3 && answer3 === num3 * num1) {
+        // stop the alarm
+        alert('Alarm stopped.');
+    } else {
+        // show error message
+        alert('Incorrect answers. Please try again.');
+    }
+}
+
+  

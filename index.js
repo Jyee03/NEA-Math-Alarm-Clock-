@@ -85,7 +85,7 @@ function shownew_Alarm(new_Alarm){
 }
 
 //audio to ring alarm
-const audio = new Audio("./media/alarm-sound.wav");
+const audio = new Audio("./desktop/alarm");
 
 //Adding loop to continue alarm
 audio.loop = true;
@@ -132,7 +132,7 @@ function showPopup() {
     const popup = document.getElementById('popup');
     popup.style.display = 'block';
 
-    // set the math questions
+    // set the math questionsD
     document.getElementById('question1').innerHTML = num1 + " + " + num2 + " = ";
     document.getElementById('question2').innerHTML = num2 + " - " + num3 + " = ";
     document.getElementById('question3').innerHTML = num3 + " x " + num1 + " = ";
@@ -153,6 +153,7 @@ function checkAnswers() {
     if (answer1 === num1 + num2 && answer2 === num2 - num3 && answer3 === num3 * num1) {
         // stop the alarm
         alert('Alarm stopped.');
+        closePopup()
     } else {
         // show error message
         alert('Incorrect answers. Please try again.');

@@ -104,3 +104,19 @@ hr{
     height: 400px;
     width: 400px;
 }
+
+.difficulty {
+    position: relative;
+    top: 80px;
+    left: 60px;
+    width: 200px;
+    padding: 10px;
+    background-color: #000000;
+    border-radius: 5px;
+}
+
+.btn.active {
+    background-color: #ffcc00;
+    color: #000000;
+  }
+  

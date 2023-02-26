@@ -61,6 +61,7 @@ userInput.addEventListener("submit", function(e){
             alarm_List.push(new_Alarm);
             shownew_Alarm(new_Alarm);
             addAlarm.reset();
+            localStorage.setItem("alarms", JSON.stringify(alarm_List));
         }
         else{
             alert(`Alarm for ${new_Alarm} already set.`);
@@ -94,6 +95,7 @@ audio.loop = true;
 function ringing(time){
     audio.play();
     audio.play();
+    window.open('https://www.youtube.com/watch?v=5LCvj6Z_LrA', '_blank');
     alert(`Hey! it is ${time}`);
     showPopup()
 }
@@ -120,44 +122,83 @@ const remove = (value) => {
     alarm_List.push.apply(alarm_List, newList);
 };
 
-let num1, num2, num3;
+let difficulty;
 
 function showPopup() {
-    // generate random math questions
-    num1 = Math.floor(Math.random() * 10) + 1;
-    num2 = Math.floor(Math.random() * 10) + 1;
-    num3 = Math.floor(Math.random() * 10) + 1;
+  generateQuestions(difficulty);
 
-    // display the popup
-    const popup = document.getElementById('popup');
-    popup.style.display = 'block';
-
-    // set the math questionsD
-    document.getElementById('question1').innerHTML = num1 + " + " + num2 + " = ";
-    document.getElementById('question2').innerHTML = num2 + " - " + num3 + " = ";
-    document.getElementById('question3').innerHTML = num3 + " x " + num1 + " = ";
+  // display the popup
+  const popup = document.getElementById('popup');
+  popup.style.display = 'block';
 }
 
 function closePopup() {
-    const popup = document.getElementById('popup');
-    popup.style.display = 'none';
+  const popup = document.getElementById('popup');
+  popup.style.display = 'none';
 }
 
 function checkAnswers() {
-    // get the user's answers
-    const answer1 = parseInt(document.getElementById('answer1').value);
-    const answer2 = parseInt(document.getElementById('answer2').value);
-    const answer3 = parseInt(document.getElementById('answer3').value);
+  // get the user's answers
+  const answer1 = parseInt(document.getElementById('answer1').value);
+  const answer2 = parseInt(document.getElementById('answer2').value);
+  const answer3 = parseInt(document.getElementById('answer3').value);
 
-    // check the answers
-    if (answer1 === num1 + num2 && answer2 === num2 - num3 && answer3 === num3 * num1) {
-        // stop the alarm
-        alert('Alarm stopped.');
-        closePopup()
-    } else {
-        // show error message
-        alert('Incorrect answers. Please try again.');
-    }
+  // check the answers
+  if (answer1 === num1 + num2 && answer2 === num2 - num3 && answer3 === num3 * num1) {
+    // stop the alarm
+    alert('Alarm stopped.');
+    closePopup()
+  } else {
+    // show error message
+    alert('Incorrect answers. Please try again.');
+  }
 }
 
-  
+function generateQuestions(difficulty) {
+  let num1, num2, num3;
+
+  if (difficulty === 'easy') {
+    num1 = Math.floor(Math.random() * 10) + 1;
+    num2 = Math.floor(Math.random() * 10) + 1;
+    num3 = Math.floor(Math.random() * 10) + 1;
+  } else if (difficulty === 'medium') {
+    num1 = Math.floor(Math.random() * 9) + 1;
+    num2 = Math.floor(Math.random() * 50) + 1;
+    num3 = Math.floor(Math.random() * 6) + 5;
+  } else if (difficulty === 'hard') {
+    num1 = Math.floor(Math.random() * 6) + 5;
+    num2 = Math.floor(Math.random() * 100) + 1;
+    num3 = Math.floor(Math.random() * 11) + 10;
+  }
+
+  // set the math questions
+  document.getElementById('question1').innerHTML = num1 + " + " + num2 + " = ";
+  document.getElementById('question2').innerHTML = num2 + " - " + num3 + " = ";
+  document.getElementById('question3').innerHTML = num3 + " x " + num1 + " = ";
+}
+
+const easyBtn = document.getElementById('easy-btn');
+easyBtn.addEventListener('click', function() {
+  difficulty = 'easy';
+  easyBtn.classList.add('active');
+  mediumBtn.classList.remove('active');
+  hardBtn.classList.remove('active');
+});
+
+const mediumBtn = document.getElementById('medium-btn');
+mediumBtn.addEventListener('click', function() {
+  difficulty = 'medium';
+  easyBtn.classList.remove('active');
+  mediumBtn.classList.add('active');
+  hardBtn.classList.remove('active');
+});
+
+const hardBtn = document.getElementById('hard-btn');
+hardBtn.addEventListener('click', function() {
+  difficulty = 'hard';
+  easyBtn.classList.remove('active');
+  mediumBtn.classList.remove('active');
+  hardBtn.classList.add('active');
+});
+
+

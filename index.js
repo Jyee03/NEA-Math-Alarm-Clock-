@@ -61,7 +61,6 @@ userInput.addEventListener("submit", function(e){
             alarm_List.push(new_Alarm);
             shownew_Alarm(new_Alarm);
             addAlarm.reset();
-            localStorage.setItem("alarms", JSON.stringify(alarm_List));
         }
         else{
             alert(`Alarm for ${new_Alarm} already set.`);
@@ -86,7 +85,7 @@ function shownew_Alarm(new_Alarm){
 }
 
 //audio to ring alarm
-const audio = new Audio("./desktop/alarm");
+const audio = new Audio("alarm.mp3");
 
 //Adding loop to continue alarm
 audio.loop = true;
@@ -94,10 +93,8 @@ audio.loop = true;
 // Ring the audio at the perfect time
 function ringing(time){
     audio.play();
-    audio.play();
-    window.open('https://www.youtube.com/watch?v=5LCvj6Z_LrA', '_blank');
-    alert(`Hey! it is ${time}`);
     showPopup()
+    alert(`Alarm Triggered, it is ${time}`);
 }
 
 // Function for stop the alarm
@@ -162,13 +159,13 @@ function generateQuestions(difficulty) {
     num2 = Math.floor(Math.random() * 10) + 1;
     num3 = Math.floor(Math.random() * 10) + 1;
   } else if (difficulty === 'medium') {
-    num1 = Math.floor(Math.random() * 9) + 1;
+    num1 = Math.floor(Math.random() * 50) + 1;
     num2 = Math.floor(Math.random() * 50) + 1;
-    num3 = Math.floor(Math.random() * 6) + 5;
+    num3 = Math.floor(Math.random() * 50) + 1;
   } else if (difficulty === 'hard') {
-    num1 = Math.floor(Math.random() * 6) + 5;
+    num1 = Math.floor(Math.random() * 100) + 1;
     num2 = Math.floor(Math.random() * 100) + 1;
-    num3 = Math.floor(Math.random() * 11) + 10;
+    num3 = Math.floor(Math.random() * 100) + 1;
   }
 
   // set the math questions

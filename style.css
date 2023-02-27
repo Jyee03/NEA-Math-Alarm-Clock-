@@ -50,8 +50,12 @@ body{
     background-color: rgb(61, 12, 1);
     color: whitesmoke;
     margin-left: 20px;
-    margin-bottom: 20px;
-    
+    margin-bottom: 20px;  
+}
+
+.user-input button:hover {
+    background-color: #ffcc00;
+    color: rgb(0, 0, 0);
 }
 
 hr{
@@ -118,5 +122,5 @@ hr{
 .btn.active {
     background-color: #ffcc00;
     color: #000000;
-  }
-  
+}
+
